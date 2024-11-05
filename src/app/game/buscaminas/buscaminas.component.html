@@ -1,11 +1,12 @@
-<div class="grid">
-    <div *ngFor="let row of cuadrilla; let rowIndex = index">
-      <button *ngFor="let cell of row; let colIndex = index"
-              [class.mine]="cell.tieneMina && cell.revelada"
-              [class.revealed]="cell.revelada"
-              (click)="revelarCelda(rowIndex, colIndex)">
-        {{ cell.revelada ? (cell.tieneMina ? '💣' : cell.minasAlrededor || '') : '' }}
-      </button>
-    </div>
-  </div>
+<div id="container">
+    <div class="grid">
+        <div *ngFor="let row of cuadrilla; let rowIndex = index">
+          <button *ngFor="let cell of row; let colIndex = index"
+                  [class.revealed]="cell.revelada"
+                  (click)="revelarCelda(rowIndex, colIndex)">
+            {{ cell.revelada ? (cell.tieneMina ? '💣' : cell.minasAlrededor || '') : '' }}
+          </button>
+        </div>
+      </div>
+</div>
   

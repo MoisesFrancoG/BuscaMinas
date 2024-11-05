@@ -1,20 +1,24 @@
+#container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
 .grid {
     display: grid;
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
     gap: 4px;
   }
   
   button {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-  }
-  
-  button.mine {
-    background-color: red;
   }
   
   button.revealed {

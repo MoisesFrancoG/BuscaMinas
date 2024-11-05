@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 interface Celda {
   tieneMina: boolean;
@@ -15,7 +16,7 @@ export class BuscaminasComponent implements OnInit {
 
   cuadrilla: Celda[][] = [];
   tamanoCuadrilla: number = 8;
-  cantidadMinas: number = 10;  
+  cantidadMinas: number = 10;
 
   ngOnInit(): void {
     this.iniciarJuego();
@@ -81,7 +82,9 @@ export class BuscaminasComponent implements OnInit {
     const celda = this.cuadrilla[fila][columna];
     if (!celda.revelada) {
       celda.revelada = true;
-      if (celda.minasAlrededor === 0 && !celda.tieneMina) {
+      if (celda.tieneMina) {
+        this.mostrarAlertaJuegoTerminado();
+      } else if (celda.minasAlrededor === 0) {
         this.revelarCeldasAdyacentes(fila, columna);
       }
     }
@@ -97,5 +100,16 @@ export class BuscaminasComponent implements OnInit {
         }
       }
     }
+  }
+
+  mostrarAlertaJuegoTerminado(): void {
+    Swal.fire({
+      title: '¡Juego Terminado!',
+      text: 'Has tocado una mina.',
+      icon: 'error',
+      confirmButtonText: 'Reiniciar'
+    }).then(() => {
+      this.iniciarJuego();
+    });
   }
 }
